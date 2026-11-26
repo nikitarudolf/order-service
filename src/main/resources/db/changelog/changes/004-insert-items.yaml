@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-insert-items
+      author: nikita
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO items (name, price, created_at, updated_at)
+              VALUES
+                ('Keyboard', 49.90, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                ('Mouse', 24.50, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+                ('Monitor', 189.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
