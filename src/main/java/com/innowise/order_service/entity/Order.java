@@ -69,7 +69,7 @@ public class Order extends BaseEntity {
         Map<Long, Deque<OrderItem>> existingByItemId = new HashMap<>();
         items.stream()
                 .sorted(Comparator.comparing(OrderItem::getId, Comparator.nullsLast(Comparator.naturalOrder())))
-                .forEach(item -> existingByItemId.computeIfAbsent(item.getItem().getId(), id -> new ArrayDeque<>())
+                .forEach(item -> existingByItemId.computeIfAbsent(item.getItem().getId(), itemId -> new ArrayDeque<>())
                         .addLast(item));
 
         Set<OrderItem> retained = new HashSet<>();

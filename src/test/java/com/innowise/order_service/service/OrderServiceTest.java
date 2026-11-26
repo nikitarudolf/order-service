@@ -3,6 +3,7 @@ package com.innowise.order_service.service;
 import com.innowise.order_service.client.UserServiceClient;
 import com.innowise.order_service.dto.CreateOrderRequest;
 import com.innowise.order_service.dto.OrderItemRequest;
+import com.innowise.order_service.dto.OrderResponse;
 import com.innowise.order_service.dto.UpdateOrderRequest;
 import com.innowise.order_service.dto.UserInfo;
 import com.innowise.order_service.entity.Item;
@@ -125,7 +126,7 @@ class OrderServiceTest {
                 .thenReturn(new PageImpl<>(List.of(order(olderUser), order()), pageable, 2));
 
         assertThat(service.getAll(null, null, Set.of(OrderStatus.NEW), pageable, CALLER).getContent())
-                .extracting(response -> response.user())
+                .extracting(OrderResponse::user)
                 .containsExactly(olderUser, USER);
         verifyNoInteractions(userServiceClient);
     }
